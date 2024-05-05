@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slideshow</title>
+<style>
+.slideshow {
+    display: flex;
+    justify-content: center;
+}
+.slideshow img {
+    max-width: 100%;
+    height: auto;
+    display: none;
+}
+</style>
+</head>
+<body>
+<div class="slideshow">
+    <img src="image1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+</div>
+<button onclick="prevSlide()">Previous</button>
+<button onclick="nextSlide()">Next</button>
+
+<script>
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.slideshow img');
+
+function showSlide(index) {
+    slides.forEach(slide => slide.style.display = 'none');
+    slides[index].style.display = 'block';
+}
+
+function prevSlide() {
+    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+    showSlide(currentSlideIndex);
+}
+
+function nextSlide() {
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    showSlide(currentSlideIndex);
+}
+
+// Show the first slide initially
+showSlide(currentSlideIndex);
+</script>
+</body>
+</html>
